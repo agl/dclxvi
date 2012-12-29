@@ -10,6 +10,7 @@
 .globl fp2e_mulxi_qhasm
 _fp2e_mulxi_qhasm:
 fp2e_mulxi_qhasm:
+push %rbp
 mov %rsp,%r11
 and $31,%r11
 add $0,%r11
@@ -145,14 +146,16 @@ movdqa 176(%rsi),%xmm11
 movdqa %xmm0,%xmm12
 
 # qhasm: float6464 0r0 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r0=int6464#1
-# asm 2: mulpd THREE_MINUSONE,<0r0=%xmm0
-mulpd THREE_MINUSONE,%xmm0
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r0=int6464#1
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r0=%xmm0
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm0
 
 # qhasm: float6464 1t0 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<1t0=int6464#13
-# asm 2: mulpd ONE_THREE,<1t0=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<1t0=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<1t0=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r0[0] += 0r0[1];0r0[1] = 1t0[0] + 1t0[1]
 # asm 1: haddpd <1t0=int6464#13,<0r0=int6464#1
@@ -165,14 +168,16 @@ haddpd %xmm12,%xmm0
 movdqa %xmm1,%xmm12
 
 # qhasm: float6464 0r1 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r1=int6464#2
-# asm 2: mulpd THREE_MINUSONE,<0r1=%xmm1
-mulpd THREE_MINUSONE,%xmm1
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r1=int6464#2
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r1=%xmm1
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm1
 
 # qhasm: float6464 1t1 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<1t1=int6464#13
-# asm 2: mulpd ONE_THREE,<1t1=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<1t1=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<1t1=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r1[0] += 0r1[1];0r1[1] = 1t1[0] + 1t1[1]
 # asm 1: haddpd <1t1=int6464#13,<0r1=int6464#2
@@ -185,14 +190,16 @@ haddpd %xmm12,%xmm1
 movdqa %xmm2,%xmm12
 
 # qhasm: float6464 0r2 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r2=int6464#3
-# asm 2: mulpd THREE_MINUSONE,<0r2=%xmm2
-mulpd THREE_MINUSONE,%xmm2
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r2=int6464#3
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r2=%xmm2
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm2
 
 # qhasm: float6464 1t2 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<1t2=int6464#13
-# asm 2: mulpd ONE_THREE,<1t2=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<1t2=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<1t2=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r2[0] += 0r2[1];0r2[1] = 1t2[0] + 1t2[1]
 # asm 1: haddpd <1t2=int6464#13,<0r2=int6464#3
@@ -205,14 +212,16 @@ haddpd %xmm12,%xmm2
 movdqa %xmm3,%xmm12
 
 # qhasm: float6464 0r3 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r3=int6464#4
-# asm 2: mulpd THREE_MINUSONE,<0r3=%xmm3
-mulpd THREE_MINUSONE,%xmm3
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r3=int6464#4
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r3=%xmm3
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm3
 
 # qhasm: float6464 1t3 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<1t3=int6464#13
-# asm 2: mulpd ONE_THREE,<1t3=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<1t3=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<1t3=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r3[0] += 0r3[1];0r3[1] = 1t3[0] + 1t3[1]
 # asm 1: haddpd <1t3=int6464#13,<0r3=int6464#4
@@ -225,14 +234,16 @@ haddpd %xmm12,%xmm3
 movdqa %xmm4,%xmm12
 
 # qhasm: float6464 0r4 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r4=int6464#5
-# asm 2: mulpd THREE_MINUSONE,<0r4=%xmm4
-mulpd THREE_MINUSONE,%xmm4
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r4=int6464#5
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r4=%xmm4
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm4
 
 # qhasm: float6464 0t4 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t4=int6464#13
-# asm 2: mulpd ONE_THREE,<0t4=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t4=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t4=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r4[0] += 0r4[1];0r4[1] = 0t4[0] + 0t4[1]
 # asm 1: haddpd <0t4=int6464#13,<0r4=int6464#5
@@ -245,14 +256,16 @@ haddpd %xmm12,%xmm4
 movdqa %xmm5,%xmm12
 
 # qhasm: float6464 0r5 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r5=int6464#6
-# asm 2: mulpd THREE_MINUSONE,<0r5=%xmm5
-mulpd THREE_MINUSONE,%xmm5
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r5=int6464#6
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r5=%xmm5
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm5
 
 # qhasm: float6464 0t5 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t5=int6464#13
-# asm 2: mulpd ONE_THREE,<0t5=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t5=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t5=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r5[0] += 0r5[1];0r5[1] = 0t5[0] + 0t5[1]
 # asm 1: haddpd <0t5=int6464#13,<0r5=int6464#6
@@ -265,14 +278,16 @@ haddpd %xmm12,%xmm5
 movdqa %xmm6,%xmm12
 
 # qhasm: float6464 0r6 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r6=int6464#7
-# asm 2: mulpd THREE_MINUSONE,<0r6=%xmm6
-mulpd THREE_MINUSONE,%xmm6
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r6=int6464#7
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r6=%xmm6
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm6
 
 # qhasm: float6464 0t6 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t6=int6464#13
-# asm 2: mulpd ONE_THREE,<0t6=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t6=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t6=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r6[0] += 0r6[1];0r6[1] = 0t6[0] + 0t6[1]
 # asm 1: haddpd <0t6=int6464#13,<0r6=int6464#7
@@ -285,14 +300,16 @@ haddpd %xmm12,%xmm6
 movdqa %xmm7,%xmm12
 
 # qhasm: float6464 0r7 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r7=int6464#8
-# asm 2: mulpd THREE_MINUSONE,<0r7=%xmm7
-mulpd THREE_MINUSONE,%xmm7
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r7=int6464#8
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r7=%xmm7
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm7
 
 # qhasm: float6464 0t7 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t7=int6464#13
-# asm 2: mulpd ONE_THREE,<0t7=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t7=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t7=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r7[0] += 0r7[1];0r7[1] = 0t7[0] + 0t7[1]
 # asm 1: haddpd <0t7=int6464#13,<0r7=int6464#8
@@ -305,14 +322,16 @@ haddpd %xmm12,%xmm7
 movdqa %xmm8,%xmm12
 
 # qhasm: float6464 0r8 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r8=int6464#9
-# asm 2: mulpd THREE_MINUSONE,<0r8=%xmm8
-mulpd THREE_MINUSONE,%xmm8
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r8=int6464#9
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r8=%xmm8
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm8
 
 # qhasm: float6464 0t8 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t8=int6464#13
-# asm 2: mulpd ONE_THREE,<0t8=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t8=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t8=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r8[0] += 0r8[1];0r8[1] = 0t8[0] + 0t8[1]
 # asm 1: haddpd <0t8=int6464#13,<0r8=int6464#9
@@ -325,14 +344,16 @@ haddpd %xmm12,%xmm8
 movdqa %xmm9,%xmm12
 
 # qhasm: float6464 0r9 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r9=int6464#10
-# asm 2: mulpd THREE_MINUSONE,<0r9=%xmm9
-mulpd THREE_MINUSONE,%xmm9
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r9=int6464#10
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r9=%xmm9
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm9
 
 # qhasm: float6464 0t9 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t9=int6464#13
-# asm 2: mulpd ONE_THREE,<0t9=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t9=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t9=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r9[0] += 0r9[1];0r9[1] = 0t9[0] + 0t9[1]
 # asm 1: haddpd <0t9=int6464#13,<0r9=int6464#10
@@ -345,14 +366,16 @@ haddpd %xmm12,%xmm9
 movdqa %xmm10,%xmm12
 
 # qhasm: float6464 0r10 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r10=int6464#11
-# asm 2: mulpd THREE_MINUSONE,<0r10=%xmm10
-mulpd THREE_MINUSONE,%xmm10
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r10=int6464#11
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r10=%xmm10
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm10
 
 # qhasm: float6464 0t10 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t10=int6464#13
-# asm 2: mulpd ONE_THREE,<0t10=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t10=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t10=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r10[0] += 0r10[1];0r10[1] = 0t10[0] + 0t10[1]
 # asm 1: haddpd <0t10=int6464#13,<0r10=int6464#11
@@ -365,14 +388,16 @@ haddpd %xmm12,%xmm10
 movdqa %xmm11,%xmm12
 
 # qhasm: float6464 0r11 *= THREE_MINUSONE
-# asm 1: mulpd THREE_MINUSONE,<0r11=int6464#12
-# asm 2: mulpd THREE_MINUSONE,<0r11=%xmm11
-mulpd THREE_MINUSONE,%xmm11
+# asm 1: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r11=int6464#12
+# asm 2: mulpd THREE_MINUSONE@GOTPCREL(%rip),<0r11=%xmm11
+mov THREE_MINUSONE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm11
 
 # qhasm: float6464 0t11 *= ONE_THREE
-# asm 1: mulpd ONE_THREE,<0t11=int6464#13
-# asm 2: mulpd ONE_THREE,<0t11=%xmm12
-mulpd ONE_THREE,%xmm12
+# asm 1: mulpd ONE_THREE@GOTPCREL(%rip),<0t11=int6464#13
+# asm 2: mulpd ONE_THREE@GOTPCREL(%rip),<0t11=%xmm12
+mov ONE_THREE@GOTPCREL(%rip), %rbp
+mulpd (%rbp),%xmm12
 
 # qhasm: float6464 0r11[0] += 0r11[1];0r11[1] = 0t11[0] + 0t11[1]
 # asm 1: haddpd <0t11=int6464#13,<0r11=int6464#12
@@ -443,4 +468,5 @@ movdqa %xmm11,176(%rdi)
 add %r11,%rsp
 mov %rdi,%rax
 mov %rsi,%rdx
+pop %rbp
 ret

@@ -114,9 +114,10 @@ movdqa 176(%rdi),%xmm11
 # qhasm: int6464 1t0
 
 # qhasm: 1t0 = MONE_MONE
-# asm 1: movdqa MONE_MONE,<1t0=int6464#13
-# asm 2: movdqa MONE_MONE,<1t0=%xmm12
-movdqa MONE_MONE,%xmm12
+# asm 1: movdqa MONE_MONE@GOTPCREL(%rip),<1t0=int6464#13
+# asm 2: movdqa MONE_MONE@GOTPCREL(%rip),<1t0=%xmm12
+mov MONE_MONE@GOTPCREL(%rip), %rbp
+movdqa (%rbp),%xmm12
 
 # qhasm: float6464 0r0  *= 1t0
 # asm 1: mulpd <1t0=int6464#13,<0r0=int6464#1

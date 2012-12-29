@@ -10,6 +10,7 @@
 .globl fp2e_triple_qhasm
 _fp2e_triple_qhasm:
 fp2e_triple_qhasm:
+push %rbp
 mov %rsp,%r11
 and $31,%r11
 add $0,%r11
@@ -118,9 +119,10 @@ movdqa 176(%rsi),%xmm11
 # qhasm: int6464 1t0
 
 # qhasm: 1t0 = THREE_THREE
-# asm 1: movdqa THREE_THREE,<1t0=int6464#13
-# asm 2: movdqa THREE_THREE,<1t0=%xmm12
-movdqa THREE_THREE,%xmm12
+# asm 1: movdqa THREE_THREE@GOTPCREL(%rip),<1t0=int6464#13
+# asm 2: movdqa THREE_THREE@GOTPCREL(%rip),<1t0=%xmm12
+mov THREE_THREE@GOTPCREL(%rip), %rbp
+movdqa (%rbp),%xmm12
 
 # qhasm: float6464 0r0  *= 1t0
 # asm 1: mulpd <1t0=int6464#13,<0r0=int6464#1
@@ -246,4 +248,5 @@ movdqa %xmm11,176(%rdi)
 add %r11,%rsp
 mov %rdi,%rax
 mov %rsi,%rdx
+pop %rbp
 ret
