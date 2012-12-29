@@ -118,6 +118,9 @@ void twistpoint_fp2_mul(twistpoint_fp2_t rop, const twistpoint_fp2_t op, const s
 
 void twistpoint_fp2_makeaffine(twistpoint_fp2_t op)
 {
+  if (fp2e_isone(op->m_z))
+    return;
+
   fp2e_invert(op->m_z, op->m_z);
   fp2e_mul(op->m_y, op->m_y, op->m_z);
   fp2e_square(op->m_z, op->m_z);
