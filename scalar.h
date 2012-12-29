@@ -8,7 +8,7 @@
 #define SCALAR_H
 #include <stdio.h>
 
-typedef unsigned long long scalar_t[4] ;
+typedef unsigned long long scalar_t[4];
 
 void scalar_setrandom(scalar_t rop, const scalar_t bound);
 
@@ -21,6 +21,6 @@ int scalar_scanb(const scalar_t s);
 
 int scalar_le(const scalar_t a, const scalar_t b);
 
-void scalar_print(FILE *fh, const scalar_t t);
+void scalar_print(FILE * fh, const scalar_t t);
 
 #endif

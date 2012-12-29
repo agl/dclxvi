@@ -94,11 +94,11 @@ void fp12e_sub(fp12e_t rop, const fp12e_t op1, const fp12e_t op2)
 void fp12e_mul(fp12e_t rop, const fp12e_t op1, const fp12e_t op2)
 {
 #ifdef BENCH
-  nummultp12 ++;
+  nummultp12++;
   multp12cycles -= cpucycles();
 #endif
 
-  fp6e_t tmp1, tmp2, tmp3; // Needed to store intermediary results
+  fp6e_t tmp1, tmp2, tmp3;	// Needed to store intermediary results
 
   fp6e_mul(tmp1, op1->m_a, op2->m_a);
   fp6e_mul(tmp3, op1->m_b, op2->m_b);
@@ -132,10 +132,10 @@ void fp12e_mul_fp6e(fp12e_t rop, const fp12e_t op1, const fp6e_t op2)
 void fp12e_square(fp12e_t rop, const fp12e_t op)
 {
 #ifdef BENCH
-  numsqp12 ++;
+  numsqp12++;
   sqp12cycles -= cpucycles();
 #endif
-  fp6e_t tmp1, tmp2, tmp3; // Needed to store intermediary results
+  fp6e_t tmp1, tmp2, tmp3;	// Needed to store intermediary results
 
   fp6e_mul(tmp1, op->m_a, op->m_b);
 
@@ -164,32 +164,32 @@ void fp12e_square(fp12e_t rop, const fp12e_t op)
 void fp12e_mul_line(fp12e_t rop, const fp12e_t op1, const fp2e_t op2, const fp2e_t op3, const fp2e_t op4)
 {
 #ifdef BENCH
-  nummultp12 ++;
+  nummultp12++;
   multp12cycles -= cpucycles();
 #endif
 
   fp2e_t fp2_0, tmp;
-  fp6e_t tmp1, tmp2, tmp3; // Needed to store intermediary results
+  fp6e_t tmp1, tmp2, tmp3;	// Needed to store intermediary results
 
-  fp2e_setzero(fp2_0);                        // fp2_0 = 0
-  fp6e_set_fp2e(tmp1, fp2_0, op2, op3);       // tmp1 = a2 = op2*tau + op3
-  fp6e_mul_shortfp6e(tmp1, op1->m_a, tmp1);   // tmp1 = a1*a2 
-  fp6e_mul_fp2e(tmp3, op1->m_b, op4);         // tmp3 = b1*op4 = b1*b2
+  fp2e_setzero(fp2_0);		// fp2_0 = 0
+  fp6e_set_fp2e(tmp1, fp2_0, op2, op3);	// tmp1 = a2 = op2*tau + op3
+  fp6e_mul_shortfp6e(tmp1, op1->m_a, tmp1);	// tmp1 = a1*a2 
+  fp6e_mul_fp2e(tmp3, op1->m_b, op4);	// tmp3 = b1*op4 = b1*b2
 
   fp2e_add(tmp, op3, op4);
   fp2e_short_coeffred(tmp);
-  fp6e_set_fp2e(tmp2, fp2_0, op2, tmp);       // tmp2 = a2 + b2
-  fp6e_add(rop->m_a, op1->m_a, op1->m_b);     // a3 = a1 + b1
+  fp6e_set_fp2e(tmp2, fp2_0, op2, tmp);	// tmp2 = a2 + b2
+  fp6e_add(rop->m_a, op1->m_a, op1->m_b);	// a3 = a1 + b1
   fp6e_short_coeffred(rop->m_a);
 
-  fp6e_set(rop->m_b, tmp3);                   // b3 = b1*b2
+  fp6e_set(rop->m_b, tmp3);	// b3 = b1*b2
 
-  fp6e_mul_shortfp6e(rop->m_a, rop->m_a, tmp2);// a3 = (a1+b1)*(a2+b2)
+  fp6e_mul_shortfp6e(rop->m_a, rop->m_a, tmp2);	// a3 = (a1+b1)*(a2+b2)
   fp6e_sub(rop->m_a, rop->m_a, tmp1);
-  fp6e_sub(rop->m_a, rop->m_a, rop->m_b);     // a3 = a1*b2 + a2*b1
+  fp6e_sub(rop->m_a, rop->m_a, rop->m_b);	// a3 = a1*b2 + a2*b1
   fp6e_short_coeffred(rop->m_a);
-  fp6e_multau(tmp1, tmp1);                    // tmp1 = a1*a2*tau
-  fp6e_add(rop->m_b, rop->m_b, tmp1);         // b3 = b1*b2 + a1*a2*tau
+  fp6e_multau(tmp1, tmp1);	// tmp1 = a1*a2*tau
+  fp6e_add(rop->m_b, rop->m_b, tmp1);	// b3 = b1*b2 + a1*a2*tau
   fp6e_short_coeffred(rop->m_b);
 #ifdef BENCH
   multp12cycles += cpucycles();
@@ -200,10 +200,10 @@ void fp12e_mul_line(fp12e_t rop, const fp12e_t op1, const fp2e_t op2, const fp2e
 void fp12e_square_norm1(fp12e_t rop, const fp12e_t op)
 {
 #ifdef BENCH
-  numsqp12norm1 ++;
+  numsqp12norm1++;
   sqp12norm1cycles -= cpucycles();
 #endif
-  fp6e_t tmp1, tmp2; // Needed to store intermediary results
+  fp6e_t tmp1, tmp2;		// Needed to store intermediary results
 
   fp6e_mul(tmp1, op->m_a, op->m_b);
   fp6e_add(rop->m_a, tmp1, tmp1);
@@ -222,12 +222,11 @@ void fp12e_pow(fp12e_t rop, const fp12e_t op, const scalar_t exp, const unsigned
 {
   fp12e_t dummy;
   fp12e_set(dummy, op);
-  fp12e_set(rop,op);
+  fp12e_set(rop, op);
   int i;
-  for(i = exp_bitsize-1; i > 0; i--)
-  {
+  for (i = exp_bitsize - 1; i > 0; i--) {
     fp12e_square(rop, rop);
-    if(scalar_getbit(exp, i - 1)) 
+    if (scalar_getbit(exp, i - 1))
       fp12e_mul(rop, rop, dummy);
   }
 }
@@ -236,12 +235,11 @@ void fp12e_pow_norm1(fp12e_t rop, const fp12e_t op, const scalar_t exp, const un
 {
   fp12e_t dummy;
   fp12e_set(dummy, op);
-  fp12e_set(rop,op);
+  fp12e_set(rop, op);
   int i;
-  for(i = exp_bitsize-1; i > 0; i--)
-  {
+  for (i = exp_bitsize - 1; i > 0; i--) {
     fp12e_square_norm1(rop, rop);
-    if(scalar_getbit(exp, i - 1)) 
+    if (scalar_getbit(exp, i - 1))
       fp12e_mul(rop, rop, dummy);
   }
 }
@@ -252,10 +250,10 @@ void fp12e_pow_norm1(fp12e_t rop, const fp12e_t op, const scalar_t exp, const un
 // (op1*z^3 + op2)^2 = (2*op1*op2)*z^3 + (op1^2*xi + op2^2).
 void fp4e_square(fp2e_t rop1, fp2e_t rop2, const fp2e_t op1, const fp2e_t op2)
 {
-  fp2e_t t1, t2; 
+  fp2e_t t1, t2;
 
-  fp2e_square(t1, op1);        // t1 = op1^2
-  fp2e_square(t2, op2);        // t2 = op2^2
+  fp2e_square(t1, op1);		// t1 = op1^2
+  fp2e_square(t2, op2);		// t2 = op2^2
 
   //fp2e_mul(rop1, op1, op2);    // rop1 = op1*op2
   //fp2e_add(rop1, rop1, rop1);  // rop1 = 2*op1*op2
@@ -263,10 +261,10 @@ void fp4e_square(fp2e_t rop1, fp2e_t rop2, const fp2e_t op1, const fp2e_t op2)
   fp2e_short_coeffred(rop1);
   fp2e_square(rop1, rop1);
   fp2e_sub2(rop1, t1);
-  fp2e_sub2(rop1, t2);    // rop1 = 2*op1*op2
+  fp2e_sub2(rop1, t2);		// rop1 = 2*op1*op2
 
-  fp2e_mulxi(rop2, t1);        // rop2 = op1^2*xi
-  fp2e_add2(rop2, t2);    // rop2 = op1^2*xi + op2^2
+  fp2e_mulxi(rop2, t1);		// rop2 = op1^2*xi
+  fp2e_add2(rop2, t2);		// rop2 = op1^2*xi + op2^2
 }
 
 // Special squaring for use on elements in T_6(fp2) (after the
@@ -312,31 +310,30 @@ void fp12e_special_square_finexp(fp12e_t rop, const fp12e_t op)
   fp6e_short_coeffred(f0);
   fp6e_set_fp2e(f1, f12, f11, f10);
   fp6e_short_coeffred(f1);
-  fp12e_set_fp6e(rop,f1,f0);
+  fp12e_set_fp6e(rop, f1, f0);
 }
 
 void fp12e_pow_special_square(fp12e_t rop, const fp12e_t op, const scalar_t exp, const unsigned int exp_bitsize)
 {
-	fp12e_t dummy;
-	fp12e_set(dummy, op);
+  fp12e_t dummy;
+  fp12e_set(dummy, op);
   // TODO: Change to setting to op, requires scalar_t to know it's size
-	fp12e_set(rop,op);
-	int i;
-	for(i = exp_bitsize-1; i > 0; i--)
-	{
-		fp12e_special_square_finexp(rop, rop);
-		if(scalar_getbit(exp, i - 1)) 
-			fp12e_mul(rop, rop, dummy);
-	}
+  fp12e_set(rop, op);
+  int i;
+  for (i = exp_bitsize - 1; i > 0; i--) {
+    fp12e_special_square_finexp(rop, rop);
+    if (scalar_getbit(exp, i - 1))
+      fp12e_mul(rop, rop, dummy);
+  }
 }
 
 void fp12e_invert(fp12e_t rop, const fp12e_t op)
 {
 #ifdef BENCH
-  numinvp12 ++;
+  numinvp12++;
   invp12cycles -= cpucycles();
 #endif
-  fp6e_t tmp1, tmp2; // Needed to store intermediary results
+  fp6e_t tmp1, tmp2;		// Needed to store intermediary results
 
   fp6e_squaredouble(tmp1, op->m_a);
   fp6e_squaredouble(tmp2, op->m_b);
@@ -344,7 +341,7 @@ void fp12e_invert(fp12e_t rop, const fp12e_t op)
   fp6e_sub(tmp1, tmp2, tmp1);
   fp6e_short_coeffred(tmp1);
   fp6e_invert(tmp1, tmp1);
-  fp6e_add(tmp1,tmp1,tmp1);
+  fp6e_add(tmp1, tmp1, tmp1);
   fp6e_short_coeffred(tmp1);
   fp12e_set(rop, op);
   fp6e_neg(rop->m_a, rop->m_a);
@@ -371,10 +368,9 @@ void fp12e_frobenius_p2(fp12e_t rop, const fp12e_t op)
 }
 
 // Print the element to stdout:
-void fp12e_print(FILE *outfile, const fp12e_t op)
+void fp12e_print(FILE * outfile, const fp12e_t op)
 {
   fp6e_print(outfile, op->m_a);
   fprintf(outfile, " * Z + ");
   fp6e_print(outfile, op->m_b);
 }
-

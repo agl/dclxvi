@@ -11,8 +11,8 @@
 
 double remround(double a, double d)
 {
-  double carry = round(a/d);
-  return a - carry*d;
+  double carry = round(a / d);
+  return a - carry * d;
 }
 
 #endif

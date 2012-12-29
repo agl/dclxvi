@@ -11,19 +11,22 @@
 #include "scalar.h"
 
 #ifdef BENCH
-unsigned long long multp12cycles; unsigned long long nummultp12;
-unsigned long long sqp12cycles; unsigned long long numsqp12;
-unsigned long long sqp12norm1cycles; unsigned long long numsqp12norm1;
-unsigned long long invp12cycles; unsigned long long numinvp12;
+unsigned long long multp12cycles;
+unsigned long long nummultp12;
+unsigned long long sqp12cycles;
+unsigned long long numsqp12;
+unsigned long long sqp12norm1cycles;
+unsigned long long numsqp12norm1;
+unsigned long long invp12cycles;
+unsigned long long numinvp12;
 #endif
 
 // Elements from F_{p^{12}}= F_{p^6}[Z] / (Z^2 - tau)F_{p^6}[Z] are represented as aZ + b
 typedef struct fp12e_struct fp12e_struct_t;
 
-struct fp12e_struct
-{
-	fp6e_t m_a;
-	fp6e_t m_b;
+struct fp12e_struct {
+  fp6e_t m_a;
+  fp6e_t m_b;
 };
 
 typedef fp12e_struct_t fp12e_t[1];
@@ -101,6 +104,6 @@ void fp12e_frobenius_p2(fp12e_t rop, const fp12e_t op);
 void fp12e_mul_scalar(fp12e_t rop, const fp12e_t op1, const scalar_t op2);
 
 // Print the element to stdout:
-void fp12e_print(FILE *outfile, const fp12e_t op);
+void fp12e_print(FILE * outfile, const fp12e_t op);
 
-#endif // ifndef FP12E_H
+#endif				// ifndef FP12E_H

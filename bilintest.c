@@ -15,7 +15,7 @@ extern const curvepoint_fp_t bn_curvegen;
 extern const twistpoint_fp2_t bn_twistgen;
 extern const scalar_t bn_n;
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
   fp12e_t e1, e2, e3;
 
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 
   // Test with neutral element as argument
   scalar_setrandom(s1, bn_n);
-  s1_size = scalar_scanb(s1)+1;
+  s1_size = scalar_scanb(s1) + 1;
   curvepoint_fp_set(p1, bn_curvegen);
   twistpoint_fp2_setneutral(p2);
   fpe_isreduced(p1->m_x);
@@ -40,11 +40,11 @@ int main(int argc, char* argv[])
 
   optate(e1, p2, p1);
 
-  if(!fp12e_isone(e1))
+  if (!fp12e_isone(e1))
     printf("Error in optimal ate: e(infty,P) != 1\n");
 
   scalar_setrandom(s2, bn_n);
-  s2_size = scalar_scanb(s2)+1;
+  s2_size = scalar_scanb(s2) + 1;
   curvepoint_fp_setneutral(p1);
   twistpoint_fp2_set(p2, bn_twistgen);
   fp2e_isreduced(p2->m_x);
@@ -54,23 +54,23 @@ int main(int argc, char* argv[])
   twistpoint_fp2_makeaffine(p2);
 
   optate(e1, p2, p1);
-  
-  if(!fp12e_isone(e1))
+
+  if (!fp12e_isone(e1))
     printf("Error in optimal ate: e(Q,infty) != 1\n");
 
-
   // Bilinearity test of optimal ate Pairing:
-  for(i=0;i<NTESTS;i++)
-  {
+  for (i = 0; i < NTESTS; i++) {
 #if (NTESTS > 100)
-    if(!(i%(NTESTS/100)) && i!=0) printf("Number of tests: %d\n",i);
+    if (!(i % (NTESTS / 100)) && i != 0)
+      printf("Number of tests: %d\n", i);
 #else
-    if(i!=0) printf("Number of tests: %d\n",i);
+    if (i != 0)
+      printf("Number of tests: %d\n", i);
 #endif
     scalar_setrandom(s1, bn_n);
     scalar_setrandom(s2, bn_n);
-    s1_size = scalar_scanb(s1)+1;
-    s2_size = scalar_scanb(s2)+1;
+    s1_size = scalar_scanb(s1) + 1;
+    s2_size = scalar_scanb(s2) + 1;
     curvepoint_fp_set(p1, bn_curvegen);
     twistpoint_fp2_set(p2, bn_twistgen);
     fpe_isreduced(p1->m_x);
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
     twistpoint_fp2_makeaffine(p2);
 
     optate(e1, p2, p1);
-    
+
     curvepoint_fp_set(p1, bn_curvegen);
     twistpoint_fp2_set(p2, bn_twistgen);
     fpe_isreduced(p1->m_x);
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
     twistpoint_fp2_makeaffine(p2);
 
     optate(e2, p2, p1);
-    
+
     curvepoint_fp_set(p1, bn_curvegen);
     twistpoint_fp2_set(p2, bn_twistgen);
 
@@ -106,8 +106,7 @@ int main(int argc, char* argv[])
     fp12e_pow(e3, e3, s1, s1_size);
     fp12e_pow(e3, e3, s2, s2_size);
 
-    if(!fp12e_iseq(e1,e2))
-    {
+    if (!fp12e_iseq(e1, e2)) {
       printf("Error in optimal ate: e1 != e2\n");
       printf("e1: ");
       fp12e_print(stdout, e1);
@@ -115,13 +114,11 @@ int main(int argc, char* argv[])
       fp12e_print(stdout, e2);
       printf("\nScalars:\n");
       printf("s1: ");
-      scalar_print(stdout, s1); 
+      scalar_print(stdout, s1);
       printf("\ns2: ");
-      scalar_print(stdout, s2); 
+      scalar_print(stdout, s2);
       printf("\n");
-    }
-    else if(!fp12e_iseq(e2,e3))
-    {
+    } else if (!fp12e_iseq(e2, e3)) {
       printf("Error in optimal ate: e2 != e3\n");
       printf("e2: ");
       fp12e_print(stdout, e2);
@@ -129,14 +126,13 @@ int main(int argc, char* argv[])
       fp12e_print(stdout, e3);
       printf("\nScalars:\n");
       printf("s1: ");
-      scalar_print(stdout, s1); 
+      scalar_print(stdout, s1);
       printf("\ns2: ");
-      scalar_print(stdout, s2); 
+      scalar_print(stdout, s2);
       printf("\n");
-    }
-    else if(fp12e_iszero(e2))
+    } else if (fp12e_iszero(e2))
       printf("Error: Pairing value is zero\n");
-    else if(fp12e_isone(e2))
+    else if (fp12e_isone(e2))
       printf("Warning: Pairing value is one\n");
   }
   return 0;

@@ -11,19 +11,21 @@
 #include "mydouble.h"
 
 #ifdef BENCH
-unsigned long long int multpcycles; unsigned long long int nummultp;
+unsigned long long int multpcycles;
+unsigned long long int nummultp;
 unsigned long long int nummultzerop;
 unsigned long long int nummultonep;
-unsigned long long int sqpcycles; unsigned long long int numsqp;
-unsigned long long invpcycles; unsigned long long numinvp;
+unsigned long long int sqpcycles;
+unsigned long long int numsqp;
+unsigned long long invpcycles;
+unsigned long long numinvp;
 #endif
 
 typedef struct fpe_struct fpe_struct_t;
 
-struct fpe_struct
-{
+struct fpe_struct {
   mydouble v[12];
-} __attribute__ ((aligned (16)));
+} __attribute__ ((aligned(16)));
 
 typedef fpe_struct_t fpe_t[1];
 
@@ -89,7 +91,7 @@ void fpe_invert(fpe_t rop, const fpe_t op1);
 void fpe_print(FILE * outfile, const fpe_t op);
 
 // Convert fpe into a bytearray
-void fpe_to_bytearray(unsigned char * rop, const fpe_t op);
+void fpe_to_bytearray(unsigned char *rop, const fpe_t op);
 
 /*
 // Field constants
@@ -101,4 +103,4 @@ fpe_t cometa_c0_const;
 fpe_t cometa_c1_const;
 */
 
-#endif 
+#endif

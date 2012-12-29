@@ -11,4 +11,4 @@
 
 void final_expo(fp12e_t rop);
 
-#endif // ifdef FINAL_EXPO_H
+#endif				// ifdef FINAL_EXPO_H

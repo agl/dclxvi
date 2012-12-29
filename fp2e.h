@@ -14,11 +14,10 @@
 // Elements from F_{p^2}= F_p[X] / (x^2 - alpha)F_p[X] are represented as aX + b
 typedef struct fp2e_struct fp2e_struct_t;
 
-struct fp2e_struct
-{
+struct fp2e_struct {
   // Arrangement in memory: (b0, a0, b1, a1, ... b11,a11)  
   mydouble v[24];
-} __attribute__ ((aligned (16)));
+} __attribute__ ((aligned(16)));
 
 typedef fp2e_struct_t fp2e_t[1];
 
@@ -107,11 +106,11 @@ void fp2e_add(fp2e_t rop, const fp2e_t op1, const fp2e_t op2);
 void fp2e_add2(fp2e_t rop, const fp2e_t op);
 
 // Load from mem
-void fp2e_load(fp2e_struct_t *rop, const fp2e_t op);
+void fp2e_load(fp2e_struct_t * rop, const fp2e_t op);
 //void fp2e_load(fp2e_t rop, const fp2e_t op);
 
 // store to mem
-void fp2e_store(fp2e_struct_t *rop, const fp2e_t op);
+void fp2e_store(fp2e_struct_t * rop, const fp2e_t op);
 //void fp2e_store(fp2e_t rop, const fp2e_t op);
 
 #ifdef QHASM
@@ -198,5 +197,4 @@ void fp2e_invert(fp2e_t rop, const fp2e_t op1);
 // Print the element to stdout:
 void fp2e_print(FILE * outfile, const fp2e_t op);
 
-
-#endif // ifndef FP2E_H
+#endif				// ifndef FP2E_H
