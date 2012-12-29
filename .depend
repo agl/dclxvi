@@ -1,0 +1,51 @@
+bilintest.o: bilintest.c curvepoint_fp.h fpe.h mydouble.h checkdouble.h \
+  scalar.h twistpoint_fp2.h fp2e.h fp12e.h fp6e.h optate.h cpucycles.h
+cpucycles.o: cpucycles.c
+curvepoint_fp.o: curvepoint_fp.c fpe.h mydouble.h checkdouble.h \
+  curvepoint_fp.h scalar.h cpucycles.h
+debugtest.o: debugtest.c curvepoint_fp.h fpe.h mydouble.h checkdouble.h \
+  scalar.h twistpoint_fp2.h fp2e.h fp12e.h fp6e.h optate.h cpucycles.h
+final_expo.o: final_expo.c final_expo.h fp12e.h fp6e.h fp2e.h fpe.h \
+  mydouble.h checkdouble.h scalar.h gmp_convert.h
+fp12e.o: fp12e.c cpucycles.h fp6e.h fp2e.h fpe.h mydouble.h checkdouble.h \
+  fp12e.h scalar.h
+fp2e.o: fp2e.c cpucycles.h fp2e.h fpe.h mydouble.h checkdouble.h mul.h \
+  scalar.h
+fp6e.o: fp6e.c fp6e.h fp2e.h fpe.h mydouble.h checkdouble.h
+fpe.o: fpe.c scalar.h fpe.h mydouble.h checkdouble.h mul.h
+gmp_convert.o: gmp_convert.c fpe.h mydouble.h checkdouble.h fp2e.h fp6e.h \
+  fp12e.h scalar.h
+linefunction.o: linefunction.c fp2e.h fpe.h mydouble.h checkdouble.h \
+  curvepoint_fp.h scalar.h twistpoint_fp2.h
+millertest.o: millertest.c curvepoint_fp.h fpe.h mydouble.h checkdouble.h \
+  scalar.h twistpoint_fp2.h fp2e.h fp12e.h fp6e.h optate.h cpucycles.h \
+  gmp_convert.h
+mul.o: mul.c mul.h mydouble.h checkdouble.h
+mydouble.o: mydouble.c mydouble.h checkdouble.h
+optate.o: optate.c fp2e.h fpe.h mydouble.h checkdouble.h fp6e.h fp12e.h \
+  scalar.h curvepoint_fp.h twistpoint_fp2.h linefunction.h final_expo.h \
+  optate.h gmp_convert.h
+parameters.o: parameters.c fpe.h mydouble.h checkdouble.h fp2e.h fp6e.h \
+  fp12e.h scalar.h curvepoint_fp.h twistpoint_fp2.h
+scalar.o: scalar.c scalar.h
+speedtest.o: speedtest.c curvepoint_fp.h fpe.h mydouble.h checkdouble.h \
+  scalar.h twistpoint_fp2.h fp2e.h fp12e.h fp6e.h optate.h linefunction.h \
+  cpucycles.h
+testfp2_invert.o: testfp2_invert.c fpe.h mydouble.h checkdouble.h fp2e.h \
+  gmp_convert.h fp6e.h fp12e.h scalar.h
+testfp2_mul.o: testfp2_mul.c mul.h mydouble.h checkdouble.h fpe.h fp2e.h \
+  gmp_convert.h fp6e.h fp12e.h scalar.h
+testfp2_mul_fpe.o: testfp2_mul_fpe.c fpe.h mydouble.h checkdouble.h \
+  fp2e.h gmp_convert.h fp6e.h fp12e.h scalar.h
+testfp2_square.o: testfp2_square.c mul.h mydouble.h checkdouble.h fpe.h \
+  fp2e.h gmp_convert.h fp6e.h fp12e.h scalar.h
+testfp_add.o: testfp_add.c fpe.h mydouble.h checkdouble.h gmp_convert.h \
+  fp2e.h fp6e.h fp12e.h scalar.h
+testfp_invert.o: testfp_invert.c fpe.h mydouble.h checkdouble.h \
+  gmp_convert.h fp2e.h fp6e.h fp12e.h scalar.h
+testfp_mul.o: testfp_mul.c fpe.h mydouble.h checkdouble.h gmp_convert.h \
+  fp2e.h fp6e.h fp12e.h scalar.h
+testfp_sub.o: testfp_sub.c fpe.h mydouble.h checkdouble.h gmp_convert.h \
+  fp2e.h fp6e.h fp12e.h scalar.h
+twistpoint_fp2.o: twistpoint_fp2.c twistpoint_fp2.h fp2e.h fpe.h \
+  mydouble.h checkdouble.h scalar.h
