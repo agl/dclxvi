@@ -5,7 +5,10 @@ CC=gcc
 CFLAGS=-std=c99 -O3 -fomit-frame-pointer
 LFLAGS=-lm
 
-all: as check c
+all: as check c libdclxvipairing.so
+
+libdclxvipairing.so:
+	gcc -shared -Wl,-soname=libdclxvipairing.so -o libdclxvipairing.so -O3 -fomit-frame-pointer -fPIC -DQHASM linefunction.c optate.c fpe.c fp2e.c fp6e.c fp12e.c curvepoint_fp.c twistpoint_fp2.c final_expo.c scalar.c parameters.c mul.c mydouble.c fp2e_add2.s fp2e_sub2.s fp2e_double2.s fp2e_triple2.s fp2e_neg2.s fp2e_mul.s fp2e_mul_fpe.s fp2e_short_coeffred.s fp2e_add.s fp2e_sub.s fp2e_parallel_coeffmul.s fp2e_mulxi.s fp2e_double.s fp2e_triple.s fp2e_neg.s fp2e_conjugate.s fpe_mul.s fp2e_square.s consts.s
 
 c: bilintest-c \
 	 speedtest-c
@@ -58,3 +61,4 @@ clean:
 	-rm speedtest-as 
 	-rm *.o
 	-rm asfunctions.a
+	-rm libdclxvipairing.so
